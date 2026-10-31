@@ -1,0 +1,26 @@
+# systemd --user unit template for ym-discord-rpc.
+#
+# Two placeholders must be replaced before installing (scripts/install-service.sh does it for you):
+#   /ПУТЬ/К/node            absolute path to the node binary (>= 24): node -p process.execPath
+#   /ПУТЬ/К/ym-discord-rpc  absolute path to this repository (the directory with package.json)
+# Then copy the result to ~/.config/systemd/user/ym-discord-rpc.service. See README.md, "Автозапуск".
+[Unit]
+Description=Yandex Music -> Discord Rich Presence
+Documentation=https://github.com/Akio1965/ym-discord-rpc
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+Type=simple
+WorkingDirectory=/ПУТЬ/К/ym-discord-rpc
+# Absolute node path: systemd does not use your shell's PATH, and version-manager shims
+# (nvm, fnm, mise, asdf) may not work without a shell. Use the real binary.
+ExecStart=/ПУТЬ/К/node /ПУТЬ/К/ym-discord-rpc/src/main.ts
+# SIGTERM clears the presence and exits 0; startup failures (no session bus, bad config) exit 1 and are retried.
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=10
+NoNewPrivileges=yes
+
+[Install]
+WantedBy=graphical-session.target

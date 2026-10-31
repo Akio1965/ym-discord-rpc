@@ -1,0 +1,10 @@
+{
+  "clientId": "",
+  "name": "Яндекс Музыка",
+  "statusDisplayType": 1,
+  "buttons": ["web"],
+  "afkMinutes": 10,
+  "search": { "yandex": true, "itunes": true },
+  "dryRun": false,
+  "assets": { "logo": "logo", "paused": "paused" }
+}

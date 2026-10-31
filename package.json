@@ -1,0 +1,38 @@
+{
+  "name": "ym-discord-rpc",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Yandex Music -> Discord Rich Presence (Listening, cover, progress bar). Linux only (MPRIS).",
+  "license": "MIT",
+  "keywords": [
+    "yandex-music",
+    "discord",
+    "rich-presence",
+    "mpris",
+    "linux"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Akio1965/ym-discord-rpc.git"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "os": [
+    "linux"
+  ],
+  "scripts": {
+    "start": "node src/main.ts",
+    "dump": "node scripts/dump.ts",
+    "test": "node --test 'test/**/*.test.ts'",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@jellybrick/dbus-next": "^0.11.4"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "typescript": "^7.0.2"
+  }
+}
